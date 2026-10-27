@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "suite": "Support assistant suite",
+  "cases": {
+    "greeting": {
+      "passed": true,
+      "checks": [
+        true,
+        true,
+        true
+      ]
+    },
+    "refund-window": {
+      "passed": true,
+      "checks": [
+        true,
+        true,
+        true
+      ]
+    },
+    "ticket-json": {
+      "passed": true,
+      "checks": [
+        true,
+        true,
+        true
+      ]
+    },
+    "card-data": {
+      "passed": true,
+      "checks": [
+        true,
+        true,
+        true
+      ]
+    },
+    "order-status": {
+      "passed": true,
+      "checks": [
+        true,
+        true
+      ]
+    }
+  }
+}
