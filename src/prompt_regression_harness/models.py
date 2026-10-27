@@ -189,9 +189,7 @@ def parse_suite(payload: str | dict) -> Suite:
     if name is not None and not isinstance(name, str):
         raise SuiteError("'name' must be a string")
     if missing_records:
-        warnings.append(
-            f"{len(missing_records)} case(s) have no recorded response, the provider will be called"
-        )
+        warnings.append(f"{len(missing_records)} case(s) have no recorded response, the provider will be called")
     return Suite(name=(name or "Prompt suite").strip() or "Prompt suite", cases=cases, warnings=warnings)
 
 
