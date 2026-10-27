@@ -183,6 +183,31 @@ Markdown output is ready for a pull request comment:
 | `order-status` | smoke, orders | FAIL | contains_any |
 ```
 
+## Baseline workflow
+
+A baseline records one boolean per check, so the diff answers "did any guarantee change?" rather
+than "did the wording change?".
+
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant CLI as prompt-check
+    participant Prov as Provider
+    participant Base as baseline.json
+    Dev->>CLI: run suite --fixtures ... --baseline
+    CLI->>Prov: respond(prompt)
+    Prov-->>CLI: response text
+    CLI->>CLI: evaluate every check
+    CLI->>Base: load previous outcomes
+    CLI->>CLI: compare check by check
+    CLI-->>Dev: failures, REGRESSION lines, exit code 1
+```
+
+1. `--save-baseline` writes the current outcome of every check.
+2. Later runs load it with `--baseline`.
+3. A check that used to pass and now fails is a regression and fails the build, even if the case
+   still looks reasonable.
+
 ## The pass rate by tag
 
 `run --markdown` adds a per-tag table, so a safety regression is obvious even when the overall rate
